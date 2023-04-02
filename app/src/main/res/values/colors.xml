@@ -7,5 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_a80">#CCFFFFFF</color>
     <color name="brown">#B68744</color>
+    <color name="grey">#808080</color>
+
+    <!--채팅창 색깔-->
+    <color name="layout_color">#D3A360</color>
+    <!--버튼 색깔-->
+    <color name="button_brown">#B68744</color>
+    <!--상태바 색깔-->
+    <color name="statusBar_color">#BFA783</color>
+    <!--오늘 날짜 background 색깔-->
+    <color name="background_today">#CCE8D3D3</color>
+    <!--채팅 풍선 색깔-->
+    <color name="chatting_color">#E6D1B2</color>
+
 </resources>

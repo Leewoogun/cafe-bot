@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Circle">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <!--Text Style-->
+
+    <style name="TextHeadline5.Black02" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextHeadline5.Black02.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSubtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextSubtitle1.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextChatting">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>

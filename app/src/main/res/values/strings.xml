@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">cafeMenuBot</string>
+    <string name="title">카페 메뉴 추천 봇</string>
 </resources>
