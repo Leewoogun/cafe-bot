@@ -40,15 +40,24 @@
         app:layout_constraintTop_toTopOf="@id/iv_cafeBot_profile" />
 
     <TextView
+        android:id="@+id/tv_cafeBot_chatting"
         style="@style/TextChatting"
         android:background="@drawable/background_chatting"
         android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
         app:layout_constraintTop_toBottomOf="@id/tv_cafeBot_name"
         tools:text="안녕하세요 카페 봇 입니다.\n커피가 좋으신가요. 논커피가 좋으신가요?" />
+
+    <TextView
+        style="@style/TextClock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
+        app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
+        tools:text="오후 8:00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
