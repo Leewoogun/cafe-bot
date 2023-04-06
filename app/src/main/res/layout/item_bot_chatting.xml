@@ -6,43 +6,35 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_my_chatting"
-        style="@style/TextChatting"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/background_chatting"
-        android:padding="10dp"
+        style="@style/TextSubtitle1.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_today"
+        android:gravity="center"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="커피" />
-
-    <TextView
-        style="@style/TextClock"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/tv_my_chatting"
-        app:layout_constraintEnd_toStartOf="@id/tv_my_chatting"
-        tools:text="오후 8:00" />
+        tools:text="2023년 11월 18일" />
 
     <ImageView
         android:id="@+id/iv_cafeBot_profile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/background_circle_bot"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_chatting" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_cafeBot_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="카페 봇"
+        tools:text="커피 봇"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
         app:layout_constraintTop_toTopOf="@id/iv_cafeBot_profile" />
@@ -50,22 +42,23 @@
     <TextView
         android:id="@+id/tv_cafeBot_chatting"
         style="@style/TextChatting"
+        android:background="@drawable/background_chatting"
+        android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/background_chatting"
-        android:padding="10dp"
         app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
         app:layout_constraintTop_toBottomOf="@id/tv_cafeBot_name"
-        tools:text="이런 메뉴는 어떠세요?" />
+        tools:text="안녕하세요 카페 봇 입니다.\n커피가 좋으신가요. 논커피가 좋으신가요?" />
 
     <TextView
+        android:id="@+id/tv_bot_clock"
         style="@style/TextClock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
         app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
+        app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
         tools:text="오후 8:00" />
 
     <ImageView
@@ -77,13 +70,33 @@
         app:layout_constraintStart_toStartOf="@id/tv_cafeBot_chatting"
         app:layout_constraintTop_toBottomOf="@id/tv_cafeBot_chatting" />
 
+    <TextView
+        style="@style/TextChatting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_cafeBot_recommend_menu1"
+        app:layout_constraintStart_toEndOf="@id/iv_cafeBot_recommend_menu1"
+        tools:text="딸기 라떼" />
+
     <ImageView
+        android:id="@+id/iv_cafeBot_recommend_menu2"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="15dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="@id/iv_cafeBot_recommend_menu1"
         app:layout_constraintTop_toBottomOf="@id/iv_cafeBot_recommend_menu1" />
+
+    <TextView
+        style="@style/TextChatting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_cafeBot_recommend_menu2"
+        app:layout_constraintStart_toEndOf="@id/iv_cafeBot_recommend_menu2"
+        tools:text="딸기 라떼" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

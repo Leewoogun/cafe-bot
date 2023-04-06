@@ -1,0 +1,168 @@
+{
+  "today_date" : {
+    "text" : "2023년 04월 06일"
+  },
+  "chat_bot": {
+    "name" : "커피 봇",
+    "Image_Url" : "https://user-images.githubusercontent.com/91789276/229529951-8d588ee3-a289-4b06-a71e-08354fbfe1aa.PNG",
+    "current_time" : "오후 10:00",
+    "conversation" : [
+      {
+        "coffee" : {
+          "text" : "단 커피와 달지 않은 커피를 선택해주세요.",
+          "option": [
+            {
+              "text": "단 커피",
+              "type": "sweet_coffee"
+            },
+            {
+              "text": "달지 않은 커피",
+              "type": "non_sweet_coffee"
+            }
+          ]
+        }
+      },
+      {
+        "non_sweet_coffee" : {
+          "text" : "산미 있는게 좋으세요 없는게 좋으세요?",
+          "option" : [
+            {
+              "text" : "산미 커피",
+              "type" : "sour_coffee"
+            },
+            {
+              "text" : "산미x 커피",
+              "type" : "non_sour_coffee"
+            }
+          ]
+        }
+      },
+      {
+        "non_coffee" : {
+          "text" : "라떼, 스무디, 차 중에 선택해주세요.",
+          "option" : [
+            {
+              "text" : "라떼",
+              "type" : "Latte"
+            },
+            {
+              "text" : "스무디",
+              "type" : "smoothie"
+            },
+            {
+              "text" : "차",
+              "type" : "tea"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "sweet_coffee" : [
+    {
+      "variance" : "바닐라 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397073-9f894dbb-130a-4e91-9760-4f4a04288ac9.PNG"
+    },
+    {
+      "variance" : "카라멜 마끼야또",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397101-5282eb34-2f46-44b0-87a4-5a0f1533302e.PNG"
+    },
+    {
+      "variance" : "카페모카",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397109-092dc158-661b-4484-b0dd-60cb9a3cf393.PNG"
+    },
+    {
+      "variance" : "연유 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397089-097cb54c-4550-4e2a-b5ee-8358c9ae6b2a.PNG"
+    },
+    {
+      "variance" : "샤케라또",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397082-41b8890f-8908-43be-b954-1eae4cc97bad.PNG"
+    },
+    {
+      "variance" : "헤이즐넛 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397120-dda22704-6018-4ca4-8aa4-486207cadd8f.PNG"
+    }
+  ],
+
+  "sour_coffee" : [
+    {
+      "variance" : "케냐AA",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397661-cf56962c-115c-42f2-ba50-44469d6dde54.PNG"
+    },
+    {
+      "variance": "예가체프",
+      "Image_Url": "https://user-images.githubusercontent.com/91789276/230397643-b62220e5-285c-491d-bbfb-9ea9bb7088e6.PNG"
+    },
+    {
+      "variance" : "콜롬비아 수프리모",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397675-bae4f45b-7407-4b31-a4a7-075df4ed0630.PNG"
+    }
+  ],
+
+  "non_sour_coffee" : [
+    {
+      "variance" : "과테말라",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397899-4afa6853-95a6-4849-8382-c5ede1c82dda.PNG"
+    },
+    {
+      "variance" : "만델링",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397915-835bc05a-5c11-4dac-b261-9e9c968ae10c.PNG"
+    },
+    {
+      "variance" : "브라질 옐로우비번",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230397920-394af131-ceec-42a8-81f6-19d29b9a605f.PNG"
+    }
+  ],
+
+  "Latte" : [
+    {
+      "variance" : "고구마 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398389-789c34ca-d159-4b1a-b89d-545781237c5b.PNG"
+    },
+    {
+      "variance" : "딸기 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398398-9c97cb90-2b81-4560-9baa-7769f2a0c3d6.PNG"
+    },
+    {
+      "variance" : "오곡 라떼",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398404-06763328-600f-432c-a18c-56da48e3a7d1.PNG"
+    }
+  ],
+
+  "Smoothie" : [
+    {
+      "variance" : "딸기 스무디",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398683-2cc351ac-ec43-423a-a7bc-ed23d1f5ade2.PNG"
+    },
+    {
+      "variance" : "망고 스무디",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398693-52ff59e0-b8ee-47b6-a726-dfad880f56f4.PNG"
+    },
+    {
+      "variance" : "블루베리 스무디",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398697-0d299598-4f56-447f-9d16-b0e02e3b808e.PNG"
+    }
+  ],
+
+  "tea" : [
+    {
+      "variance" : "캐모마일",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398945-7589cf24-9fb3-41b3-92aa-78328dd7ec5a.PNG"
+    },
+    {
+      "variance" : "페퍼민트",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398951-0a4f9611-c7ef-4202-9c33-bb1975138c12.PNG"
+    },
+    {
+      "variance" : "얼그레이",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398940-184f0ff4-65c6-4cab-b881-17e54af405a9.PNG"
+    },
+    {
+      "variance" : "블루베리",
+      "Image_Url" : "https://user-images.githubusercontent.com/91789276/230398934-3b0f6613-a3f6-4c99-b4f3-8b2e9c6157ea.PNG"
+    }
+  ]
+}
+
