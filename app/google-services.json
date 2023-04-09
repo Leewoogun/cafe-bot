@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "167525206960",
+    "project_id": "cafe-bot-84698",
+    "storage_bucket": "cafe-bot-84698.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167525206960:android:e64c29380a16c56955a475",
+        "android_client_info": {
+          "package_name": "com.cafebot.cafemenubot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167525206960-q9v7r5rehdu1u3gv955qo2re8aiq3sjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEKsqNR4OBt3xvOG9urkjOlQBJD3FcSbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167525206960-q9v7r5rehdu1u3gv955qo2re8aiq3sjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
