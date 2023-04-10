@@ -2,12 +2,13 @@ package com.cafebot.cafemenubot.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ChattingBot(
-    val initial: Initial,
-    @SerializedName("chat_bot")
-    val chatBot : ChatBot,
-    val drink : Drink
-)
+sealed class ChattingBot
+
+data class Initial(
+    @SerializedName("today_date")
+    val todayDate : String,
+    val text : String
+) : ChattingBot()
 
 data class ChatBot(
     val name : String,
@@ -15,5 +16,7 @@ data class ChatBot(
     val imageUrl : String,
     @SerializedName("current_time")
     val currentTime : String,
-    val conversation : List<Conversation>
-)
+    val conversation : List<Conversation>,
+    @SerializedName("recommend_drink")
+    val recommendDrink: Drink
+) : ChattingBot()
