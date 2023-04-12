@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="todayDate"
-            type="String" />
+            name="initial"
+            type="com.cafebot.cafemenubot.model.Initial" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tv_initial_today_date"
             style="@style/TextSubtitle1.bold"
-            app:todayDate="@{todayDate}"
+            todayDate="@{initial.todayDate}"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
@@ -30,6 +30,7 @@
 
         <ImageView
             android:id="@+id/iv_cafeBot_profile"
+            app:circleImageUrl="@{initial.imageUrl}"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
@@ -44,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{initial.name}"
             tools:text="커피 봇"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
@@ -60,6 +62,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
             app:layout_constraintTop_toBottomOf="@id/tv_cafeBot_name"
+            android:text="@{initial.text}"
             tools:text="안녕하세요 카페 봇 입니다.\n커피가 좋으신가요. 논커피가 좋으신가요?" />
 
         <TextView
@@ -67,6 +70,7 @@
             style="@style/TextClock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{initial.currentTime}"
             app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
             app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
             tools:text="오후 8:00" />

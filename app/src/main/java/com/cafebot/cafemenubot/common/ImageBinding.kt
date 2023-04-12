@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun loadImage(view : ImageView, imageUrl : String?){
+    // TODO Glide 매개변수 확인하기
     if (!imageUrl.isNullOrEmpty()){
         Glide.with(view)
             .load(imageUrl)
