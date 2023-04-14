@@ -59,6 +59,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:inputType="text"
                 android:hint="메시지를 입력하세요"
                 android:imeOptions="actionSend"
                 android:layout_marginEnd="70dp" />

@@ -59,6 +59,11 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
         return chattingBot.size
     }
 
+    fun addMessage(message : ChattingBot){
+        chattingBot.add(message)
+        notifyItemInserted(chattingBot.size - 1)
+    }
+
     class CafeInitialViewHolder(private val binding : ItemInitialBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(initial: Initial){
             binding.initial = initial

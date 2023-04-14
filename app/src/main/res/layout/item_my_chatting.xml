@@ -10,8 +10,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_my_chatting"
@@ -31,7 +32,7 @@
             style="@style/TextClock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{myChatting.currentTime}"
+            currentTimeBinding="@{myChatting.currentTime}"
             app:layout_constraintBottom_toBottomOf="@id/tv_my_chatting"
             app:layout_constraintEnd_toStartOf="@id/tv_my_chatting"
             tools:text="오후 8:00" />

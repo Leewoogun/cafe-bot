@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val time = Time()
     private val chattingBot = mutableListOf<ChattingBot>()
+    private val cafeMenuAdapter = CafeMenuAdapter(chattingBot)
     private val assetLoader = AssetLoader()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,22 +40,31 @@ class MainActivity : AppCompatActivity() {
                 initial.getString("text"),
                 initial.getString("current_time")
             ))
+
+
         }
 
-        val cafeMenuAdapter = CafeMenuAdapter(chattingBot)
         binding.rvChattingArea.adapter = cafeMenuAdapter
 
+
         cafeMenuAdapter.notifyDataSetChanged()
+
+        sendMessage()
+
     }
 
-    fun sendMessage(){
+    private fun sendMessage(){
         binding.btnSend.setOnClickListener {
             val inputText = binding.etMessage.text.toString()
             val currentTime = time.getCurrentTime()
 
-            val myChatting = MyChatting(inputText, currentTime)
-
-
+            if (inputText.isNotEmpty()){
+                if (inputText == "coffee"){
+                    val message = MyChatting(inputText, currentTime)
+                    cafeMenuAdapter.addMessage(message)
+                    binding.etMessage.text = null
+                }
+            }
         }
     }
 
