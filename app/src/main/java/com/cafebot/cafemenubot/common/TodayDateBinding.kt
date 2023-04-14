@@ -5,8 +5,8 @@ import androidx.databinding.BindingAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@BindingAdapter("todayDate")
-fun applyTodayDate(view : TextView){
+@BindingAdapter("todayDateBinding")
+fun applyTodayDate(view : TextView, text : String){
     val currentDate = LocalDate.now()
     val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
     val formatDate = currentDate.format(formatter)

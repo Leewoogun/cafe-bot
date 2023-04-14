@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tv_initial_today_date"
             style="@style/TextSubtitle1.bold"
-            todayDate="@{initial.todayDate}"
+            todayDateBinding="@{initial.todayDate}"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
@@ -70,7 +70,7 @@
             style="@style/TextClock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{initial.currentTime}"
+            currentTimeBinding="@{initial.currentTime}"
             app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
             app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
             tools:text="오후 8:00" />
