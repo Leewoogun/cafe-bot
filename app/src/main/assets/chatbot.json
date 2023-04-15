@@ -62,6 +62,7 @@
       }
     ],
     "recommend_drink" : {
+      "text" : "이런 음료는 어떠세요?",
       "sweet_coffee" : [
         {
           "variance" : "바닐라 라떼",

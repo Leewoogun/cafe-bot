@@ -9,9 +9,7 @@ import com.cafebot.cafemenubot.databinding.ActivityMainBinding
 import com.cafebot.cafemenubot.domain.AssetLoader
 import com.cafebot.cafemenubot.domain.JsonObject
 import com.cafebot.cafemenubot.domain.Time
-import com.cafebot.cafemenubot.model.ChattingBot
-import com.cafebot.cafemenubot.model.Initial
-import com.cafebot.cafemenubot.model.MyChatting
+import com.cafebot.cafemenubot.model.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -20,36 +18,30 @@ class MainActivity : AppCompatActivity() {
     private val time = Time()
     private val chattingBot = mutableListOf<ChattingBot>()
     private val cafeMenuAdapter = CafeMenuAdapter(chattingBot)
-    private val assetLoader = AssetLoader()
+//    private val jsonObject = JsonObject(this)
+//    private val initial = jsonObject.getInitialData()
+    private lateinit var sendText : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val chatBotData = assetLoader.getJsonString(this)
+        val jsonObject = JsonObject(this) // context 객체는 onCreate 메소드 이전엔 null
+        val initial = jsonObject.getInitialData()
 
-        if (!chatBotData.isNullOrEmpty()){
-            val jsonObject = JSONObject(chatBotData)
-            val initial = JsonObject(jsonObject).getInitialData()
-
-            chattingBot.add(Initial(
-                initial.getString("today_date"),
-                initial.getString("name"),
-                initial.getString("Image_Url"),
-                initial.getString("text"),
-                initial.getString("current_time")
-            ))
-
-
-        }
+        chattingBot.add(Initial(
+            initial.getString("today_date"),
+            initial.getString("name"),
+            initial.getString("Image_Url"),
+            initial.getString("text"),
+            initial.getString("current_time")))
 
         binding.rvChattingArea.adapter = cafeMenuAdapter
-
-
         cafeMenuAdapter.notifyDataSetChanged()
 
         sendMessage()
+
 
     }
 
@@ -58,13 +50,35 @@ class MainActivity : AppCompatActivity() {
             val inputText = binding.etMessage.text.toString()
             val currentTime = time.getCurrentTime()
 
+
             if (inputText.isNotEmpty()){
-                if (inputText == "coffee"){
+                if (inputText == "커피"){
                     val message = MyChatting(inputText, currentTime)
                     cafeMenuAdapter.addMessage(message)
                     binding.etMessage.text = null
+                    sendText = inputText
                 }
             }
+            setChatBotBindingData()
+        }
+    }
+
+    private fun setChatBotBindingData(){
+        val jsonObject = JsonObject(this)
+        val chatBot = jsonObject.getChatBotData()
+        val coffee = jsonObject.getSelectCoffee().getJSONObject("coffee")
+
+        if (sendText == "커피"){
+            val message = ChatBotData(
+                chatBot.getString("name"),
+                chatBot.getString("Image_Url"),
+                chatBot.getString("current_time"),
+                coffee.getString("text"),
+                null,
+                null
+            )
+
+            cafeMenuAdapter.addMessage(message)
         }
     }
 

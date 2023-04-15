@@ -3,6 +3,7 @@ package com.cafebot.cafemenubot.model
 import com.google.gson.annotations.SerializedName
 
 data class Drink(
+    val text : String,
     @SerializedName("sweet_coffee")
     val sweetCoffee : List<RecommendDrink>?,
     @SerializedName("sour_coffee")

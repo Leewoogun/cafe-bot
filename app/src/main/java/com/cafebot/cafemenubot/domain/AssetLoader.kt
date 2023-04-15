@@ -12,6 +12,7 @@ class AssetLoader {
         return kotlin.runCatching {
             loadJson(context)
         }.getOrNull()
+
     }
 
     private fun loadJson(context : Context) : String{

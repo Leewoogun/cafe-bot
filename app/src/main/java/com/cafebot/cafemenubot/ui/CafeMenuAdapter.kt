@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cafebot.cafemenubot.databinding.ItemBotChattingBinding
 import com.cafebot.cafemenubot.databinding.ItemInitialBinding
 import com.cafebot.cafemenubot.databinding.ItemMyChattingBinding
-import com.cafebot.cafemenubot.model.ChatBot
-import com.cafebot.cafemenubot.model.ChattingBot
-import com.cafebot.cafemenubot.model.Initial
-import com.cafebot.cafemenubot.model.MyChatting
+import com.cafebot.cafemenubot.model.*
 
 private const val VIEW_TYPE_INITIAL = 0
 private const val VIEW_TYPE_BOT_CHATTING = 1
@@ -36,7 +33,7 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
             }
 
             is CafeChatBotViewHolder -> {
-                val item = chattingBot[position] as ChatBot
+                val item = chattingBot[position] as ChatBotData
                 holder.bind(item)
             }
 
@@ -50,8 +47,9 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
     override fun getItemViewType(position: Int): Int {
         return when(chattingBot[position]){
             is Initial -> VIEW_TYPE_INITIAL
-            is ChatBot -> VIEW_TYPE_BOT_CHATTING
+            is ChatBotData -> VIEW_TYPE_BOT_CHATTING
             is MyChatting -> VIEW_TYPE_MY_CHATTING
+            else -> throw IllegalArgumentException("Fail to get ItemViewType")
         }
     }
 
@@ -72,8 +70,8 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
     }
 
     class CafeChatBotViewHolder(private val binding : ItemBotChattingBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(chatBot: ChatBot){
-            binding.chatBot = chatBot
+        fun bind(chatBotData: ChatBotData){
+            binding.chatBotData = chatBotData
             binding.executePendingBindings()
         }
     }

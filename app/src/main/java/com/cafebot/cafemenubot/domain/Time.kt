@@ -8,8 +8,6 @@ private const val MORNING = "오전"
 private const val AFTERNOON = "오후"
 
 class Time {
-
-
     fun getCurrentTime() : String{
         val hour = makeCurrentTime().split(":")[0]
         val minute = makeCurrentTime().split(":")[1]

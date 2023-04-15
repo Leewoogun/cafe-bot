@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="chatBot"
-            type="com.cafebot.cafemenubot.model.ChatBot" />
+            name="chatBotData"
+            type="com.cafebot.cafemenubot.model.ChatBotData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <ImageView
             android:id="@+id/iv_cafeBot_profile"
+            circleImageUrl="@{chatBotData.imageUrl}"
             android:layout_width="48dp"
-            circleImageUrl="@{chatBot.imageUrl}"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
@@ -29,24 +29,25 @@
 
         <TextView
             android:id="@+id/tv_cafeBot_name"
-            android:text="@{chatBot.name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            tools:text="커피 봇"
+            android:text="@{chatBotData.name}"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
-            app:layout_constraintTop_toTopOf="@id/iv_cafeBot_profile" />
+            app:layout_constraintTop_toTopOf="@id/iv_cafeBot_profile"
+            tools:text="커피 봇" />
 
         <TextView
             android:id="@+id/tv_cafeBot_chatting"
             style="@style/TextChatting"
-            android:background="@drawable/background_chatting"
-            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/background_chatting"
+            android:padding="10dp"
+            android:text="@{chatBotData.text}"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_profile"
             app:layout_constraintTop_toBottomOf="@id/tv_cafeBot_name"
             tools:text="단 커피가 좋으세요, 달지 않은 커피가 좋으세요?" />
@@ -54,15 +55,16 @@
         <TextView
             android:id="@+id/tv_bot_clock"
             style="@style/TextClock"
-            currentTimeBinding="@{chatBot.currentTime}"
+            currentTimeBinding="@{chatBotData.currentTime}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
             app:layout_constraintBottom_toBottomOf="@id/tv_cafeBot_chatting"
+            app:layout_constraintStart_toEndOf="@id/tv_cafeBot_chatting"
             tools:text="오후 8:00" />
 
         <ImageView
             android:id="@+id/iv_cafeBot_recommend_menu1"
+            imageUrl="@{chatBotData.recommendImageUrl}"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="15dp"
@@ -75,12 +77,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{chatBotData.recommendText}"
             app:layout_constraintBottom_toBottomOf="@id/iv_cafeBot_recommend_menu1"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_recommend_menu1"
             tools:text="딸기 라떼" />
 
         <ImageView
             android:id="@+id/iv_cafeBot_recommend_menu2"
+            imageUrl="@{chatBotData.recommendImageUrl}"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="15dp"
@@ -93,6 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{chatBotData.recommendText}"
             app:layout_constraintBottom_toBottomOf="@id/iv_cafeBot_recommend_menu2"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_recommend_menu2"
             tools:text="딸기 라떼" />
