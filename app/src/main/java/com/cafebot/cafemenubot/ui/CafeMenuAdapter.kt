@@ -15,6 +15,7 @@ private const val VIEW_TYPE_MY_CHATTING = 2
 
 class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when(viewType){
@@ -49,7 +50,7 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
             is Initial -> VIEW_TYPE_INITIAL
             is ChatBotData -> VIEW_TYPE_BOT_CHATTING
             is MyChatting -> VIEW_TYPE_MY_CHATTING
-            else -> throw IllegalArgumentException("Fail to get ItemViewType")
+            else -> -1
         }
     }
 
@@ -61,6 +62,7 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
         chattingBot.add(message)
         notifyItemInserted(chattingBot.size - 1)
     }
+
 
     class CafeInitialViewHolder(private val binding : ItemInitialBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(initial: Initial){
@@ -81,6 +83,5 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
             binding.myChatting = myChatting
             binding.executePendingBindings()
         }
-
     }
 }

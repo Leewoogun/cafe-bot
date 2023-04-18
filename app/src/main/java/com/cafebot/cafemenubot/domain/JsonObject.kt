@@ -34,7 +34,17 @@ class JsonObject(private val context : Context) {
         return conversation.getJSONObject(0)
     }
 
-//    fun getSelectNonCoffee(){
-//        val bot = chatBotData.getJSONObject("chat_bot")
-//    }
+    fun getSelectNonCoffee() : JSONObject{
+        val chatBot = getChatBotData()
+        val conversation = chatBot.getJSONArray("conversation")
+
+        return conversation.getJSONObject(2)
+    }
+
+    fun getSelectNonSweetCoffee() : JSONObject{
+        val chatBot = getChatBotData()
+        val conversation = chatBot.getJSONArray("conversation")
+
+        return conversation.getJSONObject(1)
+    }
 }

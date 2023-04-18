@@ -3,7 +3,7 @@
     "today_date" : "2023년 04월 09일",
     "name" : "커피 봇",
     "Image_Url" : "https://user-images.githubusercontent.com/91789276/229529951-8d588ee3-a289-4b06-a71e-08354fbfe1aa.PNG",
-    "text" : "안녕하세요 카페 봇 입니다.\n커피가 좋으신가요. 논커피가 좋으신가요?",
+    "text" : "안녕하세요 카페 봇 입니다.\n커피가 좋으신가요. 논 커피가 좋으신가요?",
     "current_time" : "오후 10:00"
   },
   "chat_bot": {
