@@ -1,6 +1,5 @@
 package com.cafebot.cafemenubot.ui
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

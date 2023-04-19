@@ -6,5 +6,7 @@ data class ChatBotData(
     val currentTime : String,
     val text : String,
     val recommendImageUrl : String?,
-    val recommendText : String?
+    val recommendText : String?,
+    val recommendImageUrl2: String?,
+    val recommendText2 : String?
 ) : ChattingBot()

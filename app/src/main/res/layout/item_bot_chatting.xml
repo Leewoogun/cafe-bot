@@ -84,7 +84,7 @@
 
         <ImageView
             android:id="@+id/iv_cafeBot_recommend_menu2"
-            imageUrl="@{chatBotData.recommendImageUrl}"
+            imageUrl="@{chatBotData.recommendImageUrl2}"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="15dp"
@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{chatBotData.recommendText}"
+            android:text="@{chatBotData.recommendText2}"
             app:layout_constraintBottom_toBottomOf="@id/iv_cafeBot_recommend_menu2"
             app:layout_constraintStart_toEndOf="@id/iv_cafeBot_recommend_menu2"
             tools:text="딸기 라떼" />
