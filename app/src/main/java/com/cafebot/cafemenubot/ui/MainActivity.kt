@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val chattingBot = mutableListOf<ChattingBot>()
     private val cafeMenuAdapter = CafeMenuAdapter(chattingBot)
     private lateinit var sendText : String
+    private var backPressedTime: Long = 0 // 뒤로가기 버튼을 누른 시간을 저장할 변수
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -326,6 +327,15 @@ class MainActivity : AppCompatActivity() {
                 )
                 cafeMenuAdapter.addMessage(message)
             }
+        }
+    }
+    override fun onBackPressed() {
+        val delay: Long = 2000 // 2초의 딜레이를 줍니다.
+        if (backPressedTime + delay > System.currentTimeMillis()) {
+            finish()
+        } else {
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+            backPressedTime = System.currentTimeMillis()
         }
     }
 }
