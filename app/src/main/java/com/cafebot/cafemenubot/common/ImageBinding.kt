@@ -1,5 +1,6 @@
 package com.cafebot.cafemenubot.common
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -7,8 +8,13 @@ import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun loadImage(view : ImageView, imageUrl : String?){
-    // TODO Glide 매개변수 확인하기
+    if (imageUrl == null){
+        view.visibility = View.GONE
+        return
+    }
+
     if (!imageUrl.isNullOrEmpty()){
+        view.visibility = View.VISIBLE
         Glide.with(view)
             .load(imageUrl)
             .into(view)
@@ -18,7 +24,13 @@ fun loadImage(view : ImageView, imageUrl : String?){
 
 @BindingAdapter("circleImageUrl")
 fun loadCircleImage(view : ImageView, imageUrl : String?){
+    if (imageUrl == null){
+        view.visibility = View.GONE
+        return
+    }
+
     if (!imageUrl.isNullOrEmpty()){
+        view.visibility = View.VISIBLE
         Glide.with(view)
             .load(imageUrl)
             .circleCrop()

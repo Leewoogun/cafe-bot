@@ -7,16 +7,15 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.cafebot.cafemenubot.R
-import com.cafebot.cafemenubot.constant.COFFEE_NON_COFFEE
-import com.cafebot.cafemenubot.constant.LATTE_SMOOTHIE_TEA
-import com.cafebot.cafemenubot.constant.SOUR_NON_SOUR
-import com.cafebot.cafemenubot.constant.SWEET_NON_SWEET
+import com.cafebot.cafemenubot.constant.*
 import com.cafebot.cafemenubot.databinding.ActivityMainBinding
 import com.cafebot.cafemenubot.domain.AssetLoader
 import com.cafebot.cafemenubot.domain.Flag
+import com.cafebot.cafemenubot.domain.Flag.finishFlag
 import com.cafebot.cafemenubot.domain.Flag.firstFlag
 import com.cafebot.cafemenubot.domain.Flag.secondFlag
 import com.cafebot.cafemenubot.domain.Flag.thirdFlag
+import com.cafebot.cafemenubot.domain.Flag.toastFlag
 import com.cafebot.cafemenubot.domain.JsonObject
 import com.cafebot.cafemenubot.domain.Time
 import com.cafebot.cafemenubot.model.*
@@ -26,8 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private val time = Time()
-    private val chattingBot = mutableListOf<ChattingBot>()
-    private val cafeMenuAdapter = CafeMenuAdapter(chattingBot)
+    private val cafeMenuAdapter = CafeMenuAdapter()
     private lateinit var sendText : String
     private var backPressedTime: Long = 0 // 뒤로가기 버튼을 누른 시간을 저장할 변수
 
@@ -38,22 +36,21 @@ class MainActivity : AppCompatActivity() {
 
         val jsonObject = JsonObject(this) // context 객체는 onCreate 메소드 이전엔 null
         val initial = jsonObject.getInitialData()
-        jsonObject.getRecommendSweetCoffee()
-
-        chattingBot.add(Initial(
+        val initialMessage = Initial(
             initial.getString("today_date"),
             initial.getString("name"),
             initial.getString("Image_Url"),
             initial.getString("text"),
-            initial.getString("current_time")))
+            initial.getString("current_time")
+        )
 
         binding.rvChattingArea.adapter = cafeMenuAdapter
-        cafeMenuAdapter.notifyDataSetChanged()
+        cafeMenuAdapter.addMessage(initialMessage)
 
-        sendMessage()
+        sendMessage(initialMessage)
     }
 
-    private fun sendMessage(){
+    private fun sendMessage(initialMessage : Initial){
         binding.btnSend.setOnClickListener {
             val inputText = binding.etMessage.text.toString()
             val currentTime = time.getCurrentTime()
@@ -67,9 +64,11 @@ class MainActivity : AppCompatActivity() {
             }
             if (thirdFlag){
                 thirdQuestion(inputText, currentTime)
+                secondFlag = false
             }
-
-            setChatBotBindingData()
+            if (finishFlag){
+                resetChatBot(initialMessage)
+            }
         }
     }
 
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     firstFlag = false
                     secondFlag = true
+                    setChatBotBindingData()
                 }
                 "논 커피" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     firstFlag = false
                     secondFlag = true
+                    setChatBotBindingData()
                 }
                 else -> {
                     if (firstFlag){
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    thirdFlag = true
+                    setChatBotBindingData()
                 }
                 "달지 않은 커피" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -122,6 +123,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     secondFlag = false
                     thirdFlag = true
+                    setChatBotBindingData()
                 }
                 else -> {
                     if (secondFlag){
@@ -139,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    thirdFlag = false
+                    setChatBotBindingData()
                 }
                 "스무디" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -147,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    thirdFlag = false
+                    setChatBotBindingData()
                 }
                 "차" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -155,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    thirdFlag = false
+                    setChatBotBindingData()
                 }
                 else -> {
                     if (secondFlag){
@@ -175,6 +177,8 @@ class MainActivity : AppCompatActivity() {
                     cafeMenuAdapter.addMessage(message)
                     sendText = inputText
                     binding.etMessage.text = null
+                    thirdFlag = false
+                    setChatBotBindingData()
 
                 }
                 "산미 없는거" -> {
@@ -182,7 +186,8 @@ class MainActivity : AppCompatActivity() {
                     cafeMenuAdapter.addMessage(message)
                     sendText = inputText
                     binding.etMessage.text = null
-
+                    thirdFlag = false
+                    setChatBotBindingData()
                 }
                 else ->{
                     Toast.makeText(this, SOUR_NON_SOUR, Toast.LENGTH_SHORT).show()
@@ -199,7 +204,16 @@ class MainActivity : AppCompatActivity() {
         val nonCoffee = jsonObject.getSelectNonCoffee().getJSONObject("non_coffee")
         val nonSweetCoffee = jsonObject.getSelectNonSweetCoffee().getJSONObject("non_sweet_coffee")
         val recommendText = jsonObject.getRecommendText()
-
+        val retryMessage = ChatBotData(
+            chatBot.getString("name"),
+            chatBot.getString("Image_Url"),
+            chatBot.getString("current_time"),
+            "추천 시스템이 끝났습니다.\n새로운 대화를 시작하려면 1을 입력\n종료하려면 뒤로가기 버튼을 눌려주세요.!",
+            null,
+            null,
+            null,
+            null
+        )
 
         when (sendText) {
             "커피" -> {
@@ -256,6 +270,8 @@ class MainActivity : AppCompatActivity() {
                     recommendSweetCoffee[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
             "산미 있는거" ->{
                 val recommendSourCoffee = jsonObject.getRecommendSourCoffee()
@@ -270,6 +286,8 @@ class MainActivity : AppCompatActivity() {
                     recommendSourCoffee[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
             "산미 없는거" ->{
                 val recommendNonSourCoffee = jsonObject.getRecommendNonSourCoffee()
@@ -284,6 +302,8 @@ class MainActivity : AppCompatActivity() {
                     recommendNonSourCoffee[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
             "라떼" ->{
                 val recommendLatte = jsonObject.getRecommendLatte()
@@ -298,6 +318,8 @@ class MainActivity : AppCompatActivity() {
                     recommendLatte[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
             "스무디" ->{
                 val recommendSmoothie = jsonObject.getRecommendSmoothie()
@@ -312,6 +334,8 @@ class MainActivity : AppCompatActivity() {
                     recommendSmoothie[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
             "차" ->{
                 val recommendTea = jsonObject.getRecommendTea()
@@ -326,11 +350,38 @@ class MainActivity : AppCompatActivity() {
                     recommendTea[1].getString("variance")
                 )
                 cafeMenuAdapter.addMessage(message)
+                cafeMenuAdapter.addMessage(retryMessage)
+                finishFlag = true
             }
         }
     }
+
+    private fun resetChatBot(message : Initial){
+        val inputText = binding.etMessage.text.toString()
+
+        if (inputText == "1"){
+            cafeMenuAdapter.resetChatBot()
+            cafeMenuAdapter.notifyDataSetChanged()
+            cafeMenuAdapter.addMessage(message)
+            binding.etMessage.text = null
+            finishFlag = false
+            firstFlag = true
+            toastFlag = false
+        }
+        else if (toastFlag){
+            Toast.makeText(this,FINISH,Toast.LENGTH_SHORT).show()
+            binding.etMessage.text = null
+        }
+        else{
+            toastFlag = true
+        }
+    }
+
     override fun onBackPressed() {
         val delay: Long = 2000 // 2초의 딜레이를 줍니다.
+        firstFlag = true
+        finishFlag = false
+
         if (backPressedTime + delay > System.currentTimeMillis()) {
             finish()
         } else {

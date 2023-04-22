@@ -12,8 +12,9 @@ private const val VIEW_TYPE_INITIAL = 0
 private const val VIEW_TYPE_BOT_CHATTING = 1
 private const val VIEW_TYPE_MY_CHATTING = 2
 
-class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CafeMenuAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val chattingBot = mutableListOf<ChattingBot>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -60,6 +61,10 @@ class CafeMenuAdapter(private val chattingBot : MutableList<ChattingBot>) : Recy
     fun addMessage(message : ChattingBot){
         chattingBot.add(message)
         notifyItemInserted(chattingBot.size - 1)
+    }
+
+    fun resetChatBot(){
+        chattingBot.clear()
     }
 
 
