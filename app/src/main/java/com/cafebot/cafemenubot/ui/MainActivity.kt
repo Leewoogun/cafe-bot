@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private val time = Time()
-    private val cafeMenuAdapter = CafeMenuAdapter()
+//    private val cafeMenuAdapter = CafeMenuAdapter()
     private lateinit var sendText : String
     private var backPressedTime: Long = 0 // 뒤로가기 버튼을 누른 시간을 저장할 변수
 
@@ -43,36 +43,37 @@ class MainActivity : AppCompatActivity() {
             initial.getString("text"),
             initial.getString("current_time")
         )
+        val cafeMenuAdapter = CafeMenuAdapter(binding.rvChattingArea)
 
         binding.rvChattingArea.adapter = cafeMenuAdapter
         cafeMenuAdapter.addMessage(initialMessage)
 
-        sendMessage(initialMessage)
+        sendMessage(initialMessage, cafeMenuAdapter)
     }
 
-    private fun sendMessage(initialMessage : Initial){
+    private fun sendMessage(initialMessage : Initial, cafeMenuAdapter : CafeMenuAdapter){
         binding.btnSend.setOnClickListener {
             val inputText = binding.etMessage.text.toString()
             val currentTime = time.getCurrentTime()
 
             if (firstFlag){
-                firstQuestion(inputText, currentTime)
+                firstQuestion(inputText, currentTime, cafeMenuAdapter)
             }
             if (secondFlag){
-                secondQuestion(inputText, currentTime)
+                secondQuestion(inputText, currentTime, cafeMenuAdapter)
                 firstFlag = false
             }
             if (thirdFlag){
-                thirdQuestion(inputText, currentTime)
+                thirdQuestion(inputText, currentTime, cafeMenuAdapter)
                 secondFlag = false
             }
             if (finishFlag){
-                resetChatBot(initialMessage)
+                resetChatBot(initialMessage, cafeMenuAdapter)
             }
         }
     }
 
-    private fun firstQuestion(inputText : String, currentTime : String){
+    private fun firstQuestion(inputText : String, currentTime : String, cafeMenuAdapter : CafeMenuAdapter){
         if (inputText.isNotEmpty()){
             return when (inputText) {
                 "커피" -> {
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     firstFlag = false
                     secondFlag = true
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 "논 커피" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     firstFlag = false
                     secondFlag = true
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 else -> {
                     if (firstFlag){
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun secondQuestion(inputText : String, currentTime : String){
+    private fun secondQuestion(inputText : String, currentTime : String, cafeMenuAdapter : CafeMenuAdapter){
         if (sendText == "커피"){
             when (inputText) {
                 "단 커피" -> {
@@ -114,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 "달지 않은 커피" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     secondFlag = false
                     thirdFlag = true
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 else -> {
                     if (secondFlag){
@@ -141,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 "스무디" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -149,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 "차" -> {
                     val message = MyChatting(inputText, currentTime)
@@ -157,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     binding.etMessage.text = null
                     sendText = inputText
                     secondFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 else -> {
                     if (secondFlag){
@@ -169,7 +170,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun thirdQuestion(inputText : String, currentTime : String){
+    private fun thirdQuestion(inputText : String, currentTime : String, cafeMenuAdapter : CafeMenuAdapter){
         if (sendText == "달지 않은 커피"){
             when (inputText) {
                 "산미 있는거" -> {
@@ -178,7 +179,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     binding.etMessage.text = null
                     thirdFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
 
                 }
                 "산미 없는거" -> {
@@ -187,7 +188,7 @@ class MainActivity : AppCompatActivity() {
                     sendText = inputText
                     binding.etMessage.text = null
                     thirdFlag = false
-                    setChatBotBindingData()
+                    setChatBotBindingData(cafeMenuAdapter)
                 }
                 else ->{
                     Toast.makeText(this, SOUR_NON_SOUR, Toast.LENGTH_SHORT).show()
@@ -197,7 +198,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setChatBotBindingData(){
+    private fun setChatBotBindingData(cafeMenuAdapter : CafeMenuAdapter){
         val jsonObject = JsonObject(this)
         val chatBot = jsonObject.getChatBotData()
         val coffee = jsonObject.getSelectCoffee().getJSONObject("coffee")
@@ -356,7 +357,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun resetChatBot(message : Initial){
+    private fun resetChatBot(message : Initial, cafeMenuAdapter : CafeMenuAdapter){
         val inputText = binding.etMessage.text.toString()
 
         if (inputText == "1"){

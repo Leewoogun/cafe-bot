@@ -3,16 +3,18 @@ package com.cafebot.cafemenubot.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cafebot.cafemenubot.databinding.ActivityMainBinding
 import com.cafebot.cafemenubot.databinding.ItemBotChattingBinding
 import com.cafebot.cafemenubot.databinding.ItemInitialBinding
 import com.cafebot.cafemenubot.databinding.ItemMyChattingBinding
 import com.cafebot.cafemenubot.model.*
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 private const val VIEW_TYPE_INITIAL = 0
 private const val VIEW_TYPE_BOT_CHATTING = 1
 private const val VIEW_TYPE_MY_CHATTING = 2
 
-class CafeMenuAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CafeMenuAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val chattingBot = mutableListOf<ChattingBot>()
 
@@ -61,6 +63,7 @@ class CafeMenuAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun addMessage(message : ChattingBot){
         chattingBot.add(message)
         notifyItemInserted(chattingBot.size - 1)
+        recyclerView.scrollToPosition(chattingBot.size - 1)
     }
 
     fun resetChatBot(){
