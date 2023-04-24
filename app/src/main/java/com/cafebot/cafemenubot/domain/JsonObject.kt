@@ -106,14 +106,6 @@ class JsonObject(private val context : Context) {
         return jsonArrayShuffle(tea)
     }
 
-
-    private fun getJsonArrayLengthIndex(jsonArray: JSONArray) : List<Int>{
-        val length = (0 until jsonArray.length()).toList()
-        val newLength = length.shuffled()
-
-        return listOf(newLength[0], newLength[1])
-    }
-
     private fun jsonArrayShuffle(jsonArray : JSONArray) : List<JSONObject>{
         val list = (0 until jsonArray.length()).map { jsonArray[it] }.toMutableList().shuffled()
         val castedList = list.map { it as JSONObject }

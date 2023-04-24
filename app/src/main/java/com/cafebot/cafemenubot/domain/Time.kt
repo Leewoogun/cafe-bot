@@ -28,5 +28,4 @@ class Time {
 
         return current.format(formatter)
     }
-
 }

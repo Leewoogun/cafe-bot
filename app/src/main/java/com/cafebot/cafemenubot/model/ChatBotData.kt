@@ -10,3 +10,4 @@ data class ChatBotData(
     val recommendImageUrl2: String?,
     val recommendText2 : String?
 ) : ChattingBot()
+

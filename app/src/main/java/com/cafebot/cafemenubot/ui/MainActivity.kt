@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private val time = Time()
-//    private val cafeMenuAdapter = CafeMenuAdapter()
     private lateinit var sendText : String
     private var backPressedTime: Long = 0 // 뒤로가기 버튼을 누른 시간을 저장할 변수
 
